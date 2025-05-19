@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\laragon\\www\\webbanhang\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\laragon\\www\\webbanhang\\app\\views\\product\\list.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\views\\product\\list.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\laragon\\www\\webbanhang\\app\\controllers\\ProductController.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\controllers\\ProductController.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\laragon\\www\\webbanhang\\app\\models\\ProductModel.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\models\\ProductModel.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "list.php",
+              "DocumentMoniker": "C:\\laragon\\www\\webbanhang\\app\\views\\product\\list.php",
+              "RelativeDocumentMoniker": "app\\views\\product\\list.php",
+              "ToolTip": "C:\\laragon\\www\\webbanhang\\app\\views\\product\\list.php",
+              "RelativeToolTip": "app\\views\\product\\list.php",
+              "ViewState": "AgIAALgAAAAAAAAAAAAIwMQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-05-19T03:12:07.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductController.php",
+              "DocumentMoniker": "C:\\laragon\\www\\webbanhang\\app\\controllers\\ProductController.php",
+              "RelativeDocumentMoniker": "app\\controllers\\ProductController.php",
+              "ToolTip": "C:\\laragon\\www\\webbanhang\\app\\controllers\\ProductController.php",
+              "RelativeToolTip": "app\\controllers\\ProductController.php",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-05-19T03:10:32.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductModel.php",
+              "DocumentMoniker": "C:\\laragon\\www\\webbanhang\\app\\models\\ProductModel.php",
+              "RelativeDocumentMoniker": "app\\models\\ProductModel.php",
+              "ToolTip": "C:\\laragon\\www\\webbanhang\\app\\models\\ProductModel.php",
+              "RelativeToolTip": "app\\models\\ProductModel.php",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAACIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-05-19T03:09:34.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{7615f12e-922a-545a-b9a0-3305b93d08c0}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
