@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'app/models/ProductModel.php';
 
 // Lấy URL từ query string và xử lý

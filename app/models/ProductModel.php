@@ -98,4 +98,5 @@ class ProductModel {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    
 }
