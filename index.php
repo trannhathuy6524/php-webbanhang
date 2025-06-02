@@ -1,32 +1,37 @@
 <?php
 session_start();
-require_once 'app/models/ProductModel.php';
 
-// Lấy URL từ query string và xử lý
+require_once 'app/models/ProductModel.php';
+require_once 'app/helpers/SessionHelper.php';
+
+// Lấy URL từ request
 $url = $_GET['url'] ?? '';
 $url = rtrim($url, '/');
 $url = filter_var($url, FILTER_SANITIZE_URL);
 $url = explode('/', $url);
 
-// Xác định tên controller
-$controllerName = isset($url[0]) && $url[0] != '' ? ucfirst($url[0]) . 'Controller' : 'ProductController';
+// Xác định controller
+$controllerName = isset($url[0]) && $url[0] !== '' ? ucfirst($url[0]) . 'Controller' : 'ProductController';
 
 // Xác định action
-$action = isset($url[1]) && $url[1] != '' ? $url[1] : 'index';
+$action = isset($url[1]) && $url[1] !== '' ? $url[1] : 'index';
 
-// Kiểm tra xem controller có tồn tại không
+// Debug URL (có thể bỏ dòng này nếu không cần)
+# die("controller=$controllerName - action=$action");
+
+// Kiểm tra controller có tồn tại không
 if (!file_exists('app/controllers/' . $controllerName . '.php')) {
-    die('Không tìm thấy controller');
+    die('Controller not found');
 }
 
 require_once 'app/controllers/' . $controllerName . '.php';
 
-// Khởi tạo controller
+// Tạo instance của controller
 $controller = new $controllerName();
 
-// Kiểm tra xem action có tồn tại trong controller không
+// Kiểm tra action có tồn tại không
 if (!method_exists($controller, $action)) {
-    die('Không tìm thấy action');
+    die('Action not found');
 }
 
 // Gọi action với các tham số còn lại (nếu có)

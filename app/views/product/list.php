@@ -3,7 +3,10 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="mb-0">Danh sách sản phẩm</h1>
-        <a href="/webbanhang/Product/add" class="btn btn-success">+ Thêm sản phẩm mới</a>
+        <?php if (SessionHelper::isAdmin()): ?>
+            <a href="/webbanhang/Product/add" class="btn btn-success">+ Thêm sản phẩm mới</a>
+        <?php endif; ?>
+        
     </div>
 
     <div class="row">
@@ -28,10 +31,14 @@
                         <p class="mb-2"><strong>Danh mục:</strong> <?php echo htmlspecialchars($product->category_name, ENT_QUOTES, 'UTF-8'); ?></p>
 
                         <div class="mt-auto d-flex flex-wrap gap-2">
-                            <a href="/webbanhang/Product/edit/<?php echo $product->id; ?>" class="btn btn-sm btn-warning">Sửa</a>
-                            <a href="/webbanhang/Product/delete/<?php echo $product->id; ?>" class="btn btn-sm btn-danger"
-                               onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
-                            <a href="/webbanhang/Product/addToCart/<?php echo $product->id; ?>" class="btn btn-sm btn-primary">Thêm vào giỏ hàng</a>
+                            <?php if (SessionHelper::isAdmin()): ?>
+                                <a href="/webbanhang/Product/edit/<?php echo $product->id; ?>" class="btn btn-outline-secondary">Sửa</a>
+                                <a href="/webbanhang/Product/delete/<?php echo $product->id; ?>" class="btn btn-outline-secondary"
+                                onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+                            <?php endif; ?>
+                            <a href="/webbanhang/Product/addToCart/<?php echo $product->id; ?>" class="btn btn-outline-secondary">Thêm vào giỏ hàng</a>
+                            
+                            <a href="/webbanhang/Product/show/<?php echo $product->id; ?>" class="btn btn-outline-secondary">Chi tiết</a>
                         </div>
                     </div>
                 </div>

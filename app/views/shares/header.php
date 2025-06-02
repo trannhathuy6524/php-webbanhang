@@ -1,68 +1,75 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .navbar-wrapper {
-            padding-left: 17%;
-            padding-right: 17%;
-        }
-        
-        .navbar-custom {
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            background-color: #f8f9fa;
-            margin-top: 15px;
+        .product-image {
+            max-width: 100px;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="navbar-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-            <div class="container">
-                <a class="navbar-brand" href="#">Quản lý sản phẩm</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/webbanhang/Product/">Danh sách sản phẩm</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/webbanhang/Product/add">Thêm sản phẩm</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="/webbanhang/product/cart">
-                                <i class="bi bi-cart3"></i> Giỏ hàng
-                                <?php if (!empty($_SESSION['cart'])): ?>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">
-                                        <?php echo array_sum(array_column($_SESSION['cart'], 'quantity')); ?>
-                                    </span>
-                                <?php endif; ?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container rounded shadow-sm my-3">
+        <a class="navbar-brand" href="#">Quản lý sản phẩm</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- GỘP TẤT CẢ NAV ITEM VÀO ĐÂY -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Bên trái -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/webbanhang/Product/">Danh sách sản phẩm</a>
+                </li>
+                <?php if (SessionHelper::isAdmin()): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/webbanhang/Product/add">Thêm sản phẩm</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/webbanhang/Category/">Danh mục sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/webbanhang/Category/add">Thêm danh mục</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/webbanhang/Order/">Quản lý đơn hàng</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/webbanhang/Account/manage">Quản lý tài khoản</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+
+            <!-- Bên phải -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <?php if (SessionHelper::isLoggedIn()): ?>
+                        <a class="nav-link"><?php echo $_SESSION['username']; ?></a>
+                    <?php else: ?>
+                        <a class="nav-link" href="/webbanhang/account/login">Đăng nhập</a>
+                    <?php endif; ?>
+                </li>
+                <li class="nav-item">
+                    <?php if (SessionHelper::isLoggedIn()): ?>
+                        <a class="nav-link" href="/webbanhang/account/logout">Đăng xuất</a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container mt-4">
-        <!-- Nội dung trang sẽ được đặt ở đây -->
+        <!-- Nội dung chính sẽ được đặt ở đây -->
     </div>
 
-    <!-- Thêm JavaScript Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

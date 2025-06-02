@@ -13,6 +13,11 @@ class ProductController {
         $this->productModel = new ProductModel($this->db);
     }
 
+    // Kiểm tra quyền Admin
+    private function isAdmin() {
+        return SessionHelper::isAdmin();
+    }
+
     public function index() {
         $products = $this->productModel->getProducts();
         include 'app/views/product/list.php';
@@ -28,11 +33,20 @@ class ProductController {
     }
 
     public function add() {
+        if (!$this->isAdmin()) {
+            echo "Bạn không có quyền truy cập chức năng này!";
+            exit;
+        }
         $categories = (new CategoryModel($this->db))->getCategories();
         include_once 'app/views/product/add.php';
     }
 
     public function save() {
+
+        if (!$this->isAdmin()) {
+            echo "Bạn không có quyền truy cập chức năng này!";
+            exit;
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'] ?? '';
             $description = $_POST['description'] ?? '';
@@ -57,6 +71,10 @@ class ProductController {
     }
 
     public function edit($id) {
+        if (!$this->isAdmin()) {
+            echo "Bạn không có quyền truy cập chức năng này!";
+            exit;
+        }
         $product = $this->productModel->getProductById($id);
         $categories = (new CategoryModel($this->db))->getCategories();
         if ($product) {
@@ -67,6 +85,10 @@ class ProductController {
     }
 
     public function update() {
+        if (!$this->isAdmin()) {
+            echo "Bạn không có quyền truy cập chức năng này!";
+            exit;
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $name = $_POST['name'];
@@ -90,6 +112,10 @@ class ProductController {
     }
 
     public function delete($id) {
+        if (!$this->isAdmin()) {
+            echo "Bạn không có quyền truy cập chức năng này!";
+            exit;
+        }
         if ($this->productModel->deleteProduct($id)) {
             header('Location: /webbanhang/Product');
         } else {
