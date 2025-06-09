@@ -1,4 +1,3 @@
-
 <?php include 'app/views/shares/header.php'; ?>
 
 <div class="container mt-5">
@@ -35,21 +34,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="image" class="form-label">Hình ảnh sản phẩm:</label>
-                    <div class="input-group mb-2">
-                        <input type="file" class="form-control rounded-3" id="image" name="image" accept="image/*">
-                        <label class="input-group-text rounded-3" for="image">Tải lên</label>
-                    </div>
-                    <div id="imagePreview" class="mt-2 text-center d-none">
-                        <img src="" class="img-thumbnail mb-2" style="max-height: 200px;" id="previewImg">
-                        <button type="button" class="btn btn-sm btn-outline-danger d-block mx-auto" id="removeImage">
-                            <i class="bi bi-x-circle"></i> Xóa ảnh
-                        </button>
-                    </div>
-                    <div class="form-text">Chấp nhận các định dạng: JPG, JPEG, PNG, GIF. Kích thước tối đa: 2MB</div>
-                </div>
-
-                <div class="mb-4">
                     <label for="category_id" class="form-label">Danh mục:</label>
                     <select id="category_id" name="category_id" class="form-select rounded-3" required>
                         <?php foreach ($categories as $category): ?>
@@ -70,63 +54,40 @@
 </div>
 
 <script>
-// Hiển thị preview ảnh khi upload
-document.getElementById('image').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        // Kiểm tra kích thước (2MB = 2 * 1024 * 1024 bytes)
-        if (file.size > 2 * 1024 * 1024) {
-            alert('Kích thước file quá lớn. Vui lòng chọn file nhỏ hơn 2MB.');
-            this.value = '';
-            return;
-        }
-        
-        // Kiểm tra loại file
-        const fileType = file.type;
-        if (!fileType.match('image/(jpeg|jpg|png|gif)')) {
-            alert('Chỉ chấp nhận file hình ảnh có định dạng JPG, JPEG, PNG, GIF.');
-            this.value = '';
-            return;
-        }
-        
-        // Hiển thị preview
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.getElementById('previewImg');
-            preview.src = e.target.result;
-            document.getElementById('imagePreview').classList.remove('d-none');
-        }
-        reader.readAsDataURL(file);
-    }
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/webbanhang/api/category')
+        .then(response => response.json())
+        .then(data => {
+            const categorySelect = document.getElementById('category_id');
+            data.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.id;
+                option.textContent = category.name;
+                categorySelect.appendChild(option);
+            });
+        });
 });
 
-// Xóa ảnh đã chọn
-document.getElementById('removeImage').addEventListener('click', function() {
-    document.getElementById('image').value = '';
-    document.getElementById('imagePreview').classList.add('d-none');
-});
-
-// Validate form
 function validateForm() {
     const name = document.getElementById('name').value.trim();
     const price = document.getElementById('price').value;
     const description = document.getElementById('description').value.trim();
-    
+
     if (name === '') {
         alert('Vui lòng nhập tên sản phẩm');
         return false;
     }
-    
+
     if (isNaN(price) || parseFloat(price) <= 0) {
         alert('Giá sản phẩm phải là số dương');
         return false;
     }
-    
+
     if (description === '') {
         alert('Vui lòng nhập mô tả sản phẩm');
         return false;
     }
-    
+
     return true;
 }
 </script>
