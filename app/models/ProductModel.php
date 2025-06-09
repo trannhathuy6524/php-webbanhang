@@ -9,7 +9,7 @@ class ProductModel {
 
     
     public function getProducts() {
-        $query = "SELECT p.id, p.name, p.description, p.price, c.name as category_name 
+        $query = "SELECT p.id, p.name, p.description, p.price, p.image, c.name as category_name 
                 FROM " . $this->table_name . " p 
                 LEFT JOIN category c ON p.category_id = c.id";
         $stmt = $this->conn->prepare($query);
@@ -97,6 +97,19 @@ class ProductModel {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
+    }
+
+    public function searchProducts($keyword) {
+        $query = "SELECT p.*, c.name AS category_name 
+                FROM " . $this->table_name . " p 
+                LEFT JOIN category c ON p.category_id = c.id
+                WHERE p.name LIKE :keyword OR p.description LIKE :keyword";
+        
+        $keyword = "%" . $keyword . "%";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':keyword', $keyword);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     
 }

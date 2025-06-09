@@ -3,15 +3,35 @@ require_once('app/config/database.php');
 require_once('app/models/ProductModel.php');
 require_once('app/models/CategoryModel.php');
 
+require_once('app/utils/JWTHandler.php');
 class ProductApiController {
     private $productModel;
     private $db;
+    private $jwtHandler;
 
     public function __construct() {
         $this->db = (new Database())->getConnection();
         $this->productModel = new ProductModel($this->db);
+
+        $this->jwtHandler = new JWTHandler();
     }
 
+    private function authenticate() {
+        $headers = apache_request_headers();
+
+        if (isset($headers['Authorization'])) {
+            $authHeader = $headers['Authorization'];
+            $arr = explode(" ", $authHeader);
+            $jwt = $arr[1] ?? null;
+
+            if ($jwt) {
+                $decoded = $this->jwtHandler->decode($jwt);
+                return $decoded ? true : false;
+            }
+        }
+
+        return false;
+    }
     // Lấy danh sách sản phẩm
     public function index() {
         header('Content-Type: application/json');
@@ -84,5 +104,19 @@ class ProductApiController {
             http_response_code(400);
             echo json_encode(['message' => 'Product deletion failed']);
         }
+    }
+
+    public function search() {
+        header('Content-Type: application/json');
+        $keyword = $_GET['keyword'] ?? '';
+        
+        if (empty($keyword)) {
+            http_response_code(400);
+            echo json_encode(['message' => 'Keyword is required']);
+            return;
+        }
+        
+        $products = $this->productModel->searchProducts($keyword);
+        echo json_encode($products);
     }
 }

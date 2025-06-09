@@ -44,6 +44,9 @@
                     <li>
                         <a class="nav-link" href="/webbanhang/Account/manage">Quản lý tài khoản</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/webbanhang/ApiClient">API Client</a>
+                    </li>
                 <?php endif; ?>
             </ul>
 
